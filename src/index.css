@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --m3-surface: #f8fafc;
+    --m3-surface-dim: #f1f5f9;
+    --m3-surface-container: rgba(255, 255, 255, 0.65);
+    --m3-surface-container-high: rgba(255, 255, 255, 0.82);
+    --m3-on-surface: #0f172a;
+    --m3-on-surface-variant: #475569;
+    --m3-outline: rgba(148, 163, 184, 0.35);
+    --m3-primary: #0d9488;
+    --m3-primary-container: #ccfbf1;
+    --m3-on-primary: #ffffff;
+    --m3-on-primary-container: #115e59;
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.7);
+    --glass-highlight: rgba(255, 255, 255, 0.95);
+    --glass-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  }
+
+  .dark {
+    --m3-surface: #030712;
+    --m3-surface-dim: #020617;
+    --m3-surface-container: rgba(15, 23, 42, 0.62);
+    --m3-surface-container-high: rgba(30, 41, 59, 0.75);
+    --m3-on-surface: #f8fafc;
+    --m3-on-surface-variant: #94a3b8;
+    --m3-outline: rgba(255, 255, 255, 0.12);
+    --m3-primary: #2dd4bf;
+    --m3-primary-container: rgba(45, 212, 191, 0.18);
+    --m3-on-primary: #042f2e;
+    --m3-on-primary-container: #5eead4;
+    --glass-bg: rgba(15, 23, 42, 0.58);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-highlight: rgba(255, 255, 255, 0.28);
+    --glass-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6), 0 6px 16px -4px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* 100% REAL Liquid Glass & Glassmorphism Utilities */
+.liquid-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    inset 0 1px 1px 0 var(--glass-highlight),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.08),
+    var(--glass-shadow);
+  position: relative;
+}
+
+.liquid-glass-elevated {
+  background: var(--glass-bg);
+  backdrop-filter: blur(36px) saturate(210%);
+  -webkit-backdrop-filter: blur(36px) saturate(210%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    inset 0 1.5px 2px 0 var(--glass-highlight),
+    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.12),
+    0 24px 50px -12px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+.liquid-glass-pill {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    inset 0 1px 1px 0 var(--glass-highlight),
+    0 4px 14px -2px rgba(0, 0, 0, 0.12);
+}
+
+/* Real Liquid Refraction Specular Sheen */
+.liquid-glass::before,
+.liquid-glass-elevated::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.0) 100%);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Material 3 State Layers */
+.m3-state-layer {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.m3-state-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.m3-state-layer:hover::after {
+  opacity: 0.08;
+}
+
+.m3-state-layer:active::after {
+  opacity: 0.16;
+}
+
+/* Floating Fluid Orbs */
+@keyframes fluid-float-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(45px, -35px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 40px) scale(0.92);
+  }
+}
+
+@keyframes fluid-float-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 30px) scale(0.95);
+  }
+  66% {
+    transform: translate(35px, -45px) scale(1.08);
+  }
+}
+
+.animate-fluid-1 {
+  animation: fluid-float-1 18s ease-in-out infinite;
+}
+
+.animate-fluid-2 {
+  animation: fluid-float-2 22s ease-in-out infinite;
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}

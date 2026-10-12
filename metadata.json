@@ -1,0 +1,6 @@
+{
+  "name": "AuraAir - Global Air Quality Index & 24h Forecast",
+  "description": "Worldwide Air Quality Index monitoring system with real-time station metrics, 24-hour real forecast, pollutant diagnostics, and hourly location-based health alerts.",
+  "requestFramePermissions": ["geolocation", "notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
